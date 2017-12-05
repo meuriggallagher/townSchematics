@@ -131,10 +131,7 @@ for jj = 1:S(1).nBuildings
             for kk = 2 : size(points,1)-1
                 [coveringPercent(kk),directions(kk)] = ...
                     CalcPercentageCovering( ...
-                    points(kk,:),points(kk+1,:),directions(kk-1),m(1),c(1));
-                
-                dumPctg(points(kk,2),points(kk,1)) = ...
-                    coveringPercent(kk);
+                    points(kk,:),points(kk+1,:),directions(kk-1),m(1),c(1));                                
             end
             
             % Fill in corners as 100%
@@ -149,6 +146,23 @@ for jj = 1:S(1).nBuildings
             %% Fill in corners
             dumImg(points(1,2),points(1,1)) = 1;
             dumImg(points(end,2),points(end,1)) = 1;
+            
+            %% Check for top or bottom border
+            topBrd = 0;
+            botBrd = 0;
+            for kk = 2:size(points,1)-1
+                topBrd = topBrd + dumImg(points(kk,2)-1,points(kk,1));
+                botBrd = botBrd + dumImg(points(kk,2)+1,points(kk,1));
+            end
+            if botBrd > topBrd
+                coveringPercent = 1 - coveringPercent;
+            end
+            
+            % Percentage array
+            for kk = 2:size(points,1)-1
+                dumPctg(points(kk,2),points(kk,1)) = ...
+                    coveringPercent(kk);
+            end
         end
         
         % Fill holes

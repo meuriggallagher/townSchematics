@@ -1,4 +1,15 @@
 %CREATETOWNSCHEMATIC Create town schematic from GIS data
+%   TOWNSCHEMATIC is designed to create an indexed array schematic 
+%   representing a town with different building types. 
+%   
+%   Data is loaded from a GIS shapefile, and takes user input to determine 
+%   the type of each building present. For example, in the case of fire 
+%   safety modelling, the building type could represent different 
+%   construction materials.
+%
+%   This data is then converted to an indexed array of user specified size 
+%   by asigning a pixel to each value based on the percentage coverage of 
+%   each building type.
 %
 % Author: M.T.Gallagher 2017, all rights reserve
 % E-mail: m.t.gallagher@bham.ac.ukd
